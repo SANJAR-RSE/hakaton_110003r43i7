@@ -231,19 +231,29 @@ bot.catch((err, ctx) => {
   ctx.reply("Kutilmagan xatolik yuz berdi. Iltimos, /start bosib qayta urinib ko'ring.").catch(() => {});
 });
 
-bot.launch().then(() => console.log('[bot] MedQueue Telegram bot started (polling)'));
-
-// Render (and similar PaaS) deploy bots as a "Web Service" and expect the
-// process to bind to $PORT - without this the deploy is marked failed even
-// though the bot itself (long-polling, no HTTP traffic) works fine.
-const http = require('http');
 const PORT = process.env.PORT || 3000;
-http
-  .createServer((req, res) => {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ status: 'ok', service: 'medqueue-bot' }));
-  })
-  .listen(PORT, () => console.log(`[bot] health server listening on port ${PORT}`));
+// WEBHOOK_DOMAIN is this service's own public HTTPS URL, e.g.
+// https://medqueue-bot.onrender.com (set as an env var on the host).
+const WEBHOOK_DOMAIN = process.env.WEBHOOK_DOMAIN;
+
+if (WEBHOOK_DOMAIN) {
+  // Webhook mode: Telegram pushes updates to us as real HTTP requests.
+  // This is required on free-tier hosts (Render, etc.) that spin an idle
+  // Web Service down after ~15 min of no HTTP traffic - long-polling would
+  // silently die on sleep since it never receives inbound traffic to wake
+  // the service back up, while a webhook POST both delivers the update AND
+  // wakes the service.
+  bot
+    .launch({ webhook: { domain: WEBHOOK_DOMAIN, port: PORT } })
+    .then(() => console.log(`[bot] MedQueue Telegram bot started (webhook @ ${WEBHOOK_DOMAIN})`))
+    .catch((err) => console.error('[bot] failed to launch webhook:', err));
+} else {
+  // Local development: plain long-polling, no public URL needed.
+  bot
+    .launch()
+    .then(() => console.log('[bot] MedQueue Telegram bot started (polling)'))
+    .catch((err) => console.error('[bot] failed to launch polling:', err));
+}
 
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));
