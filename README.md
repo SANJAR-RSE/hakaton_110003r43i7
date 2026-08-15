@@ -149,8 +149,15 @@ qayta ishga tushirish kifoya, kod o'zgarishi shart emas.
 - **Backend** → Render (Root Directory: `backend`, Build: `npm install`,
   Start: `npm start`). Env: `MONGO_URI`, `JWT_SECRET`, `BOT_TOKEN`,
   `ANTHROPIC_API_KEY` (ixtiyoriy), `CORS_ORIGINS` (web va landing domenlari).
-- **Bot** → Render Background Worker/Web Service (Root Directory: `bot`).
-  Env: `BOT_TOKEN`, `API_URL` (backend'ning live URL'i + `/api`).
+- **Bot** → Render Web Service (Root Directory: `bot`). Env: `BOT_TOKEN`,
+  `API_URL` (backend'ning live URL'i + `/api`), `WEBHOOK_DOMAIN` (botning
+  o'zining live URL'i, masalan `https://medqueue-bot.onrender.com`).
+  **Muhim:** `WEBHOOK_DOMAIN` bo'lmasa bot long-polling'ga o'tadi — bu
+  Render bepul tarifida ishlamaydi, chunki HTTP trafiksiz xizmat ~15
+  daqiqada "uxlab qoladi" va polling loop hech narsa uni uyg'otmagani
+  uchun jimgina to'xtaydi. `WEBHOOK_DOMAIN` bilan Telegram xabarlarni
+  to'g'ridan-to'g'ri HTTP POST sifatida yuboradi — bu ham xabarni
+  yetkazadi, ham uxlab qolgan xizmatni uyg'otadi.
 - **Web** → Vercel (Root Directory: `web`). Env: `NEXT_PUBLIC_API_URL`
   (backend'ning live URL'i + `/api`).
 - **Landing** → Vercel (Root Directory: `landing`). Env:
