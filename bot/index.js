@@ -11,6 +11,13 @@ if (!token) {
 
 const bot = new Telegraf(token);
 
+// Log every incoming update so it's visible on the host's log stream -
+// useful for confirming updates are actually being received in production.
+bot.use((ctx, next) => {
+  console.log(`[bot] update from chat ${ctx.chat?.id}: ${ctx.updateType}${ctx.message?.text ? ` "${ctx.message.text}"` : ''}`);
+  return next();
+});
+
 const MAIN_MENU = Markup.keyboard([
   ['🏥 Yangi navbat olish'],
   ['📋 Navbatlarim', '👤 Profil'],
