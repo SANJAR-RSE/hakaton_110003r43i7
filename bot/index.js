@@ -233,5 +233,17 @@ bot.catch((err, ctx) => {
 
 bot.launch().then(() => console.log('[bot] MedQueue Telegram bot started (polling)'));
 
+// Render (and similar PaaS) deploy bots as a "Web Service" and expect the
+// process to bind to $PORT - without this the deploy is marked failed even
+// though the bot itself (long-polling, no HTTP traffic) works fine.
+const http = require('http');
+const PORT = process.env.PORT || 3000;
+http
+  .createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ status: 'ok', service: 'medqueue-bot' }));
+  })
+  .listen(PORT, () => console.log(`[bot] health server listening on port ${PORT}`));
+
 process.once('SIGINT', () => bot.stop('SIGINT'));
 process.once('SIGTERM', () => bot.stop('SIGTERM'));

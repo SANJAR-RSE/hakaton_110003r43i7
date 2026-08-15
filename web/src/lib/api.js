@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { useAuthStore } from './store';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://medqueue-backend-e8o3.onrender.com/api';
 
 export const api = axios.create({ baseURL: API_URL, timeout: 20000 });
 
