@@ -1,6 +1,6 @@
 import { Stethoscope } from 'lucide-react';
 
-const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000';
+const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL || 'https://web-sanjar2.vercel.app';
 const BOT_URL = process.env.NEXT_PUBLIC_BOT_URL || 'https://t.me/hakatontest_bot';
 
 export function Footer() {

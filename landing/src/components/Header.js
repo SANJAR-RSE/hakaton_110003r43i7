@@ -3,7 +3,7 @@
 import { Stethoscope, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
-const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000';
+const WEB_URL = process.env.NEXT_PUBLIC_WEB_URL || 'https://web-sanjar2.vercel.app';
 
 const LINKS = [
   { href: '#muammo', label: 'Muammo' },

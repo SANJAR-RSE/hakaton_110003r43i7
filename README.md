@@ -159,12 +159,16 @@ qayta ishga tushirish kifoya, kod o'zgarishi shart emas.
 Har bir Render/Vercel service shu GitHub repo'ga ulanadi — keyingi
 `git push`larda hammasi avtomatik qayta deploy bo'ladi.
 
-Live linklar (deploy qilingach shu yerga yoziladi):
+Live linklar:
 
-- Web — _(deploy qilinmoqda)_
-- Landing — _(deploy qilinmoqda)_
-- Backend API — _(deploy qilinmoqda)_
+- Web — https://web-sanjar2.vercel.app
+- Landing — https://landing-sanjar2.vercel.app
+- Backend API — https://medqueue-backend-e8o3.onrender.com
 - Telegram bot — https://t.me/hakatontest_bot
+
+> Render'ning bepul tarifida backend cold-start bo'lishi mumkin (birinchi
+> so'rov 20-30 soniya cho'zilishi mumkin) — demo oldidan bir marta
+> `/health` endpointiga so'rov yuborib "isitib qo'ying".
 
 ---
 
