@@ -1,5 +1,7 @@
 # MedQueue Tashkent — Taqdimot
 
+**Live:** https://presentation-sanjar2.vercel.app
+
 Gapiradigan, yuqori-animatsiyali taqdimot sahifasi. Custom cursor, slaydlarning
 audio vaqtiga sinxronlashgan navbatma-navbat paydo bo'lishi, arxitektura
 diagrammasi va real-vaqt "waveform" — hammasi bitta `index.html` faylida.

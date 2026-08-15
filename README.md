@@ -173,6 +173,7 @@ Live linklar:
 - Landing — https://landing-sanjar2.vercel.app
 - Backend API — https://medqueue-backend-e8o3.onrender.com
 - Telegram bot — https://t.me/hakatontest_bot
+- Taqdimot — https://presentation-sanjar2.vercel.app
 
 > Render'ning bepul tarifida backend cold-start bo'lishi mumkin (birinchi
 > so'rov 20-30 soniya cho'zilishi mumkin) — demo oldidan bir marta
