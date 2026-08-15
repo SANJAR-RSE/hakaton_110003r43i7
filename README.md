@@ -23,6 +23,7 @@ repo/
 ├── web/        Next.js — asosiy funksional ilova (bemor + shifokor)
 ├── landing/    Next.js — marketing/tanishtiruv sayti
 ├── bot/        Node.js + Telegraf — Telegram bot
+├── presentation/  Gapiradigan, animatsiyali taqdimot sahifasi (index.html)
 └── README.md   (shu fayl)
 ```
 
